@@ -41,6 +41,8 @@ class Robot: public IterativeRobot
 {
 	RobotDrive drive;
 	Encoder driveEncoder;
+	Joystick rightStick;
+	Joystick leftStick;
 	Compressor compressor;
 
 	bool enabled;
@@ -55,6 +57,8 @@ class Robot: public IterativeRobot
 	Robot()
 	{
 		drive.SetExpiration(0.1);
+		rightStick(USB0);
+		leftStick(USB1);
 	}
 
 	~Robot(){}
@@ -91,7 +95,7 @@ private:
 
 	void TeleopPeriodic()
 	{
-
+		drive.TankDrive(rightStick, leftStick);
 	}
 
 	void TestPeriodic()
